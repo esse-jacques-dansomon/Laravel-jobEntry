@@ -12,8 +12,17 @@ class Category extends Model
 
     protected $fillable = ['name', 'slug', 'icon'];
 
+
+
     public function jobs(): HasMany
     {
         return $this->hasMany(Job::class);
     }
+
+
+    public function jobsCount()
+    {
+        return $this->hasMany(Job::class)->count();
+    }
+
 }
