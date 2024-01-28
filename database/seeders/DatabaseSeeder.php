@@ -115,27 +115,40 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $i + 1,
                 'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
                 'slug' => 'enterprise' . $i,
-                'logo' => 'https://www.w3schools.com/w3css/img_lights.jpg' . $i,
-                'website' => 'https://www.w3schools.com/w3css/img_lights.jpg'.$i,
+                'logo' => 'https://www.w3schools.com/w3css/img_lights.jpg' ,
+                'website' => 'https://www.agencecauris.com' ,
             ];
 
             \App\Models\Enterprise::create($enterprise);
         }
 
-        for ($i = 0; $i < 10; $i++) {
+        //set role
+        $enterprises = \App\Models\Enterprise::all();
+        foreach ($enterprises as $enterprise) {
+            $enterprise->user->role = 'enterprise';
+            $enterprise->user->save();
+        }
+
+        for ($i = 10; $i < 20; $i++) {
             $applicant = [
                 'user_id' => $i + 1,
                 'cv' => 'https://www.w3schools.com/w3css/img_lights.jpg' ,
                 'photo' => 'https://www.w3schools.com/w3css/img_lights.jpg' ,
                 'coverLetter' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-                'portfolio' => 'https://www.w3schools.com/w3css/img_lights.jpg' . $i,
+                'portfolio' => 'https://github.com/esse-jacques-dansomon',
             ];
 
             \App\Models\Applicant::create($applicant);
         }
 
+        //set role
+        $applicants = \App\Models\Applicant::all();
+        foreach ($applicants as $applicant) {
+            $applicant->user->role = 'applicant';
+            $applicant->user->save();
+        }
 
-        \App\Models\Job::factory(200)->create();
+        \App\Models\Job::factory(500)->create();
 
         $applicants = \App\Models\Applicant::all();
         $jobs = \App\Models\Job::all();

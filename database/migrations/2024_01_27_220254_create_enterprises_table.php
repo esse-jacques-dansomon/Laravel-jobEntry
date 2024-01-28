@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('slug', 100)->unique();
             $table->string('logo');
-            $table->string('website', 100)->unique();
+            $table->string('website', 100);
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
 
