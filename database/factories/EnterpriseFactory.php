@@ -18,9 +18,10 @@ class EnterpriseFactory extends Factory
     {
         //description, slug, logo, website, user_id
         return [
-            'description' => $this->faker->text(200),
-            'slug' => $this->faker->slug(100),
-            'logo' => $this->faker->imageUrl(640, 480, 'cats'),
+            'user_id' => $this->faker->numberBetween(1, 10),
+            'description' => $this->faker->text(100),
+            'slug' => $this->faker->slug(2),
+            'logo' => $this->faker->imageUrl(640, 480),
             'website' => $this->faker->url(),
         ];
     }
