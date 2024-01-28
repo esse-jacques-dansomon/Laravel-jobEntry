@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('testimonies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->text('description');
+            $table->text('content');
+            $table->enum('status', ['active', 'inactive']);
             $table->foreignIdFor(\App\Models\User::class);
         });
     }

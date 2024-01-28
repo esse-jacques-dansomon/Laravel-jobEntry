@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->text('description');
-            $table->string('slug', 100)->unique();
+            $table->text('slug');
             $table->string('logo');
-            $table->string('website', 100);
+            $table->string('website');
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
 

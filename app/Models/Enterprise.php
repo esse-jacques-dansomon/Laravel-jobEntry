@@ -11,13 +11,15 @@ class Enterprise extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'description',
-        'slug',
-        'logo',
-        'website',
-        'user_id',
-    ];
+//    protected $fillable = [
+//        'description',
+//        'slug',
+//        'logo',
+//        'website',
+//        'user_id',
+//    ];
+
+    protected $guarded = [];
 
     public function user(): BelongsTo
     {
