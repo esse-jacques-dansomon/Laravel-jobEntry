@@ -46,9 +46,3 @@ Route::get('/jobs/details' , function () {
 Route::get('/post-job', function () {
     return view('pages.post-job');
 });
-
-Route::get('/welcome', function () {
-    return view('pages.welcome');
-});
-
-

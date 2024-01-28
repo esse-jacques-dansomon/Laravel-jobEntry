@@ -1,7 +1,8 @@
 # JobEntry
 
 
-<p align="center"><a href="" target="_blank"><img src="img.png" width="100%" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://github.com/esse-jacques-dansomon/" target="_blank"><img src="docs/img.png" width="3584" alt="Laravel Logo"></a></p>
+
 
 
 ## Table of Contents
@@ -17,6 +18,7 @@
 ## Description
 
 This is a simple job entry application that allows users to create, read, update, and delete job entries.
+<p align="center"><a href="https://github.com/esse-jacques-dansomon/" target="_blank"><img src="docs/UML.png" width="3584" alt="Laravel Logo"></a></p>
 
 ## Installation
 
@@ -62,6 +64,6 @@ Project is: _in progress_ until further notice. The following features are plann
 
 ## Contact
 
-[GitHub](essejacquesdansomon)
+[GitHub](https://github.com/esse-jacques-dansomon/)
 
 [LinkedIn](https://www.linkedin.com/in/esse-jacques-dansomon/)

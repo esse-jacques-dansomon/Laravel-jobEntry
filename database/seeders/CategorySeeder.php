@@ -2,21 +2,16 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Category;
-use App\Models\User;
-use Database\Factories\UserFactory;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      */
     public function run(): void
     {
-        User::Factory(30)->create();
-
         $categories = [
             [
                 'name' => 'Agriculture',
@@ -107,46 +102,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            \App\Models\Category::create($category);
+            \App\Models\Category::factory()->create($category);
         }
-
-        for ($i = 0; $i < 10; $i++) {
-            $enterprise = [
-                'user_id' => $i + 1,
-                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-                'slug' => 'enterprise' . $i,
-                'logo' => 'https://www.w3schools.com/w3css/img_lights.jpg' . $i,
-                'website' => 'https://www.w3schools.com/w3css/img_lights.jpg'.$i,
-            ];
-
-            \App\Models\Enterprise::create($enterprise);
-        }
-
-        for ($i = 0; $i < 10; $i++) {
-            $applicant = [
-                'user_id' => $i + 1,
-                'cv' => 'https://www.w3schools.com/w3css/img_lights.jpg' ,
-                'photo' => 'https://www.w3schools.com/w3css/img_lights.jpg' ,
-                'coverLetter' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-                'portfolio' => 'https://www.w3schools.com/w3css/img_lights.jpg' . $i,
-            ];
-
-            \App\Models\Applicant::create($applicant);
-        }
-
-
-        \App\Models\Job::factory(200)->create();
-
-        $applicants = \App\Models\Applicant::all();
-        $jobs = \App\Models\Job::all();
-
-        foreach ($applicants as $applicant) {
-            $applicant->jobs()->attach(
-                $jobs->random(rand(1, 3))->pluck('id')->toArray()
-            );
-        }
-
-
-
     }
 }
