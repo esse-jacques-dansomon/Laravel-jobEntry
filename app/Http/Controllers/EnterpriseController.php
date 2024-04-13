@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEnterpriseRequest;
 use App\Http\Requests\UpdateEnterpriseRequest;
 use App\Models\Enterprise;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class EnterpriseController extends Controller
 {
@@ -19,17 +21,36 @@ class EnterpriseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        //
+        return view('auth.register_enterprise');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEnterpriseRequest $request)
+    public function store(StoreEnterpriseRequest $request): \Illuminate\Http\RedirectResponse
     {
-        //
+        //create user and enterprise
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'enterprise'
+        ]);
+
+        $slug = $request->name . '-' . $user->id;
+        $enterprise = Enterprise::create([
+            'user_id' => $user->id,
+            'logo' => $request->logo->store('logo'),
+            'description' => $request->description,
+            'website' => $request->website,
+            'slug' => $slug
+//            'location' => $request->location,
+//            'phone' => $request->phone
+        ]);
+
+        return redirect()->route('login');
     }
 
     /**

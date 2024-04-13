@@ -41,5 +41,6 @@ Auth::routes();
 
 Route::get('/register', 'App\Http\Controllers\ApplicantController@create')->name('register');
 Route::post('/register', 'App\Http\Controllers\ApplicantController@store')->name('register');
+Route::get('/enterprise', 'App\Http\Controllers\EnterpriseController@create')->name('enterprise');
 Route::post('/enterprise', 'App\Http\Controllers\EnterpriseController@store')->name('enterprise');
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
