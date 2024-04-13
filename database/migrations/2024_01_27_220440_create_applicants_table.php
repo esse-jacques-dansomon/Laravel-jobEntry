@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('cv', 100);
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('portfolio', 100);
-            $table->text('coverLetter');
+            $table->text('coverLetter')->nullable();
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });

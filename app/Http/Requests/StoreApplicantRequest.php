@@ -11,7 +11,7 @@ class StoreApplicantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreApplicantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+            'name' => 'required|string|max:255',
+            'cv' => 'required|file|mimes:pdf|max:2048',
+            'photo' => 'required|file|mimes:jpg,jpeg,png|max:2048',
+            'portfolio' => 'required|string|max:255',
+            'coverLetter' => 'required|string|max:255',
         ];
     }
 }

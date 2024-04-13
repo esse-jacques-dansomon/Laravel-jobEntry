@@ -8,6 +8,7 @@ use App\Models\Applicant;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\Testimony;
+use App\Models\User;
 
 class ApplicantController extends Controller
 {
@@ -61,7 +62,7 @@ class ApplicantController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.register');
     }
 
     /**
@@ -69,7 +70,22 @@ class ApplicantController extends Controller
      */
     public function store(StoreApplicantRequest $request)
     {
-        //
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 'applicant'
+        ]);
+
+        $applicant = Applicant::create([
+            'user_id' => $user->id,
+            'cv' => $request->cv->store('cv'),
+            'photo' => $request->photo->store('photo'), // 'photo' => 'photo
+            'portfolio' => $request->portfolio,
+            'coverLetter' => $request->coverLetter
+        ]);
+
+        return redirect()->route('login');
     }
 
     /**
