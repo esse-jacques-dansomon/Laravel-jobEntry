@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        if (auth()->user()->isEnterprise()){
+            $enterprise = auth()->user()->enterprise;
+            $jobs = Job::where('enterprise_id', $enterprise->id)->get();
+            return view('pages.dashboard', compact('jobs'));
+        }
+
+        if (auth()->user()->isApplicant()){
+            $jobs = auth()->user()->applicant->jobs;
+            return view('pages.dashboard', compact('jobs'));
+        }
+
+
+
+        $jobs = Job::all();
+        return view('pages.dashboard', compact('jobs'));
     }
 }
