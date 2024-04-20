@@ -21,9 +21,9 @@ class EnterpriseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function create(): \Inertia\Response|\Inertia\ResponseFactory
     {
-        return view('auth.register_enterprise');
+        return inertia('auth/RegisterEnterprise');
     }
 
     /**

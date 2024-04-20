@@ -5,7 +5,7 @@
     <div class="justify-content-center">
         <div class="">
             <div class="card">
-                <x-breadcrumb title="Register"/>
+                <x-breadcrumb title="Register as Job Seeker"/>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}"  enctype="multipart/form-data">
@@ -59,8 +59,6 @@
                             <label for="coverLetter" class="col-md-4 col-form-label text-md-end">{{ __('coverLetter') }}</label>
 
                             <div class="col-md-6">
-{{--                                <input id="coverLetter" type="text" class="form-control @error('coverLetter') is-invalid @enderror" name="coverLetter" required >--}}
-
                                 <textarea id="coverLetter" type="text" class="form-control @error('coverLetter') is-invalid @enderror" name="coverLetter"  ></textarea>
                                 @error('coverLetter')
                                     <span class="invalid-feedback" role="alert">

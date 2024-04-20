@@ -17,12 +17,12 @@ import { Link } from '@inertiajs/vue3'
                 <template v-if="!$page.props.user">
                     <a href="/login" class="nav-item nav-link">Login</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <Link href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <span class="ms-1 d-none d-lg-inline-block">Register</span>
-                        </a>
+                        </Link>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <a href="/register" class="dropdown-item">Applicant</a>
-                            <a href="/enterprise" class="dropdown-item">Enterprise</a>
+                            <Link :href=" route('register')" class="dropdown-item">Applicant</Link>
+                            <Link :href="route('enterprise')" class="dropdown-item">Enterprise</Link>
                         </div>
                     </div>
                 </template>
@@ -32,13 +32,13 @@ import { Link } from '@inertiajs/vue3'
                             <span class="ms-1 d-none d-lg-inline-block">{{ $page.props.user.name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <a href="/dashboard" class="dropdown-item">Dashboard</a>
+                            <Link :href="route('dashboard')" class="dropdown-item">Dashboard</Link>
                             <a href="/logout" class="dropdown-item" @click.prevent="logout">Logout</a>
                         </div>
                     </div>
                 </template>
             </div>
-            <a href="/post-job" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></a>
+            <Link :href="route('post-job')" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Post A Job<i class="fa fa-arrow-right ms-3"></i></Link>
         </div>
     </nav>
 </template>

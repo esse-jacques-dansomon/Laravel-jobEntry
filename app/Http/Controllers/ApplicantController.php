@@ -62,7 +62,7 @@ class ApplicantController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return inertia('auth/RegisterApplicant');
     }
 
     /**

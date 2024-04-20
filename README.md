@@ -26,18 +26,29 @@ This is a simple job entry application that allows users to create, read, update
 2. Run `composer install`
 3. Run `npm install`
 4. Run `php artisan migrate`
-5. Run `php artisan serve`
-6. Navigate to `localhost:8000` in your browser
-7. Enjoy!
+5. Run `npm run dev`
+6. Run `php artisan serve`
+7. Navigate to `localhost:8000` in your browser
+8. Enjoy!
 
 ## Usage
 
-1. Register a new user
-2. Login with your new user
-3. Create a new job entry
-4. View your job entry
-5. Edit your job entry
-6. Delete your job entry
+### Enterprise User
+1. Register a new user as an enterprise on `localhost:8000/register`
+2. Login with your new user credentials on `localhost:8000/login`
+3. Create a new job entry on `localhost:8000/job/create`
+4. View your job entry on `localhost:8000/job`
+5. Edit your job entry on `localhost:8000/job/edit`
+6. View all your job entries on `localhost:8000/dashboard`
+7. Logout
+
+### Job Seeker User
+1. Register a new user as a job seeker on `localhost:8000/register`
+2. Login with your new user credentials on `localhost:8000/login`
+3. View all job entries on `localhost:8000/jobs`
+4. View a specific job entry on `localhost:8000/job/{id}`
+5. Apply to a job entry on `localhost:8000/job/{id}/apply`
+6. View all job entries you have applied to on `localhost:8000/dashboard`
 7. Logout
 
 ## Contributing
