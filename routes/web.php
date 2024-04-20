@@ -18,8 +18,6 @@ Route::get('/', 'App\Http\Controllers\ApplicantController@index')->name('home');
 Route::get('/jobs', 'App\Http\Controllers\JobController@index')->name('jobs');
 Route::get('/jobs/{job}', 'App\Http\Controllers\JobController@show')->name('job');
 Route::get('/jobs?active_type={type}', 'App\Http\Controllers\JobController@index')->name('jobs-active');
-//Route::get('/job-categories', 'App\Http\Controllers\JobController@categories')->name('job-categories');
-//Route::get('/jobs-categories/{category}', 'App\Http\Controllers\JobController@category')->name('job-category');
 Route::get('/post-job', 'App\Http\Controllers\JobController@create')->name('post-job');
 Route::post('/post-job', 'App\Http\Controllers\JobController@store')->name('post-job');
 Route::get('/apply/{job}', 'App\Http\Controllers\JobController@apply')->name('apply');

@@ -2,6 +2,7 @@
 
 import Breadcrumb from "../components/Breadcrumb.vue";
 import JobCard from "../components/JobCard.vue";
+import Pagination from "../components/Pagination.vue";
 defineProps(
     {
         category: Object,
@@ -22,7 +23,7 @@ defineProps(
                 <div class="tab-content">
                     <JobCard v-for="job in jobs.data" :job="job" />
                     <div class=" d-inline-flex justify-content-center">
-                        {{ jobs.links }}
+                        <pagination :links="jobs.links" />
                     </div>
                 </div>
             </div>

@@ -60,10 +60,14 @@ defineProps(
             <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
                 <job-card v-for="job in jobs.data" :key="job.id" :job="job"/>
             </div>
+            <div class=" d-inline-flex justify-content-center">
+                <pagination :links="jobs.links" />
+            </div>
         </div>
+
+
     </div>
     <!-- Jobs End -->
-    <pagination :links="jobs.links" />
 </template>
 
 <style scoped>

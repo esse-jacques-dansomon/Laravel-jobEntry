@@ -91,7 +91,8 @@ class JobController extends Controller
     public function show($job)
     {
         $job = Job::where('slug', $job)->firstOrFail();
-        return view('pages.jobs.job-details', compact('job'));
+        $job->load('enterprise');
+        return inertia('jobs/JobDetails', compact('job'));
     }
 
 

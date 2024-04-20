@@ -36,51 +36,6 @@
 
                     <div class="">
                         <h4 class="mb-4">Apply For The Job</h4>
-{{--                        <form method="POST" action="{{ route('post-job') }}" enctype="multipart/form-data">--}}
-{{--                            <div class="row g-3">--}}
-{{--                                <div class="col-12 col-sm-6">--}}
-{{--                                    <label for="name"></label>--}}
-{{--                                    <input id="name" type="text"--}}
-{{--                                           placeholder="Name"--}}
-{{--                                           class="form-control @error('name') is-invalid @enderror"--}}
-{{--                                           name="title" value="{{ old('name') }}" required--}}
-{{--                                           autocomplete="name" autofocus>--}}
-{{--                                    @error('title')--}}
-{{--                                        <span class="invalid-feedback" role="alert">--}}
-{{--                                            <strong>{{ $message }}</strong>--}}
-{{--                                        </span>--}}
-{{--                                    @enderror--}}
-
-{{--                                </div>--}}
-{{--                                <div class="col-12 col-sm-6">--}}
-{{--                                    <label for="email"></label>--}}
-{{--                                    <input id="email" type="email"--}}
-{{--                                           placeholder="Email"--}}
-{{--                                           class="form-control @error('email') is-invalid @enderror"--}}
-{{--                                           name="email" value="{{ old('email') }}" required--}}
-{{--                                           autocomplete="email" autofocus>--}}
-{{--                                    @error('email')--}}
-{{--                                        <span class="invalid-feedback" role="alert">--}}
-{{--                                            <strong>{{ $message }}</strong>--}}
-{{--                                        </span>--}}
-{{--                                    @enderror--}}
-
-{{--                                </div>--}}
-{{--                                <div class="col-12 col-sm-6">--}}
-
-
-{{--                                </div>--}}
-{{--                                <div class="col-12 col-sm-6">--}}
-{{--                                    <input type="file" class="form-control bg-white">--}}
-{{--                                </div>--}}
-{{--                                <div class="col-12">--}}
-{{--                                    <textarea class="form-control" rows="5" placeholder="Coverletter"></textarea>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-12">--}}
-{{--                                    <button class="btn btn-primary w-100" type="submit">Apply Now</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
                         <div class="col-12">
                             <a href="{{ route('apply', $job->id) }}"
 

@@ -1,6 +1,8 @@
 <template>
-    <div class="pagination">
-        <Link :class="`a ${l.active ? 'active' : '' }`" :key="i" :href="l.url" v-for="(l, i) in links" v-html="l.label"> </Link>
+    <div class="container d-inline-flex justify-content-center">
+        <div class="pagination">
+            <Link :class="`a ${l.active ? 'active' : '' }`" :key="i" :href="l.url" v-for="(l, i) in links" v-html="l.label"> </Link>
+        </div>
     </div>
 </template>
 <style scoped>
