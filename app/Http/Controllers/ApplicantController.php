@@ -17,14 +17,14 @@ class ApplicantController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::with('jobs')->get();
 
         $fullTimeJobs = Job::where('type', 'full-time')->paginate(5);
         $internshipJobs = Job::where('type', 'internship')->paginate(5);
         $partTimeJobs = Job::where('type', 'part-time')->paginate(5);
         $freelanceJobs = Job::where('type', 'freelance')->paginate(5);
 
-        $testimonies = Testimony::all();
+        $testimonies = Testimony::with('user')->get();
 
 
         $typesJobs = [
@@ -50,7 +50,7 @@ class ApplicantController extends Controller
             ]
         ];
 
-        return view('pages.home', compact(
+        return inertia('other/Home', compact(
             'categories',
             'typesJobs',
             'testimonies'

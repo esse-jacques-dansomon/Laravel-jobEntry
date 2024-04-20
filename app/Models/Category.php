@@ -20,9 +20,11 @@ class Category extends Model
     }
 
 
-    public function jobsCount()
+    public function jobsCount(): int
     {
         return $this->hasMany(Job::class)->count();
     }
+
+
 
 }

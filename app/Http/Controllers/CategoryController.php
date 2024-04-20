@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::with('jobs')->get();
+        return inertia('category/JobCategory', compact('categories'));
     }
 
     /**
@@ -21,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,9 +36,11 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(String $category)
     {
-        //
+        $category = Category::where('slug', $category)->firstOrFail();
+        $jobs = $category->jobs()->paginate(15);
+        return inertia('category/JobCategoryDetails', compact('category', 'jobs'));
     }
 
     /**

@@ -6,7 +6,6 @@ use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 use App\Models\Category;
 use App\Models\Job;
-use App\Models\Testimony;
 
 class JobController extends Controller
 {
@@ -24,8 +23,8 @@ class JobController extends Controller
         $internshipJobs = Job::where('type', 'internship')->paginate(15);
         $partTimeJobs = Job::where('type', 'part-time')->paginate(15);
         $freelanceJobs = Job::where('type', 'freelance')->paginate(15);
-
-
+        $categories = Category::all();
+        $jobs = Job::with('enterprise')->orderBy('created_at', 'desc')->paginate(15);
         $typesJobs = [
             [
                 'id' => 'full-time',
@@ -49,23 +48,9 @@ class JobController extends Controller
             ]
         ];
 
-        return view('pages.job-list', compact(
-            'typesJobs',    'activeType'
+        return inertia('jobs/JobList', compact(
+            'typesJobs',    'activeType', 'categories', 'jobs'
         ));
-    }
-
-
-    public function categories()
-    {
-        $categories = Category::all();
-        return view('pages.category', compact('categories'));
-    }
-
-    public function category( $category )
-    {
-        $category = Category::where('slug', $category)->firstOrFail();
-        $jobs = $category->jobs()->paginate(15);
-        return view('pages.jobs.category', compact('category', 'jobs'));
     }
 
     /**
