@@ -78,7 +78,6 @@ class HomeController extends Controller
     public function applicants(Job $job): \Inertia\Response
     {
         $job->load('applicants');
-        //load user for each applicant
         $job->applicants->load('user');
         $job->load('category');
         $job->load('enterprise');
