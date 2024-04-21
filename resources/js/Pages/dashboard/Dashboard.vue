@@ -57,8 +57,8 @@ const props = defineProps({
                         <Link :href="`/jobs/${job.slug}`" class=""><i class="far fa-eye"></i></Link>
                         <template v-if="$page.props.auth.user.is_enterprise">
                             <Link :href="`/dashboard/${job.id}/applicants`" class=""><i class="fa fa-users"></i></Link>
-                            <Link :href="`/jobs/edit/${job.id}`" class=" "><i class="fas fa-edit"></i></Link>
-                            <Link :href="`/jobs/delete/${job.id}`" class=""><i class="far fa-trash-alt"></i></Link>
+<!--                            <Link :href="`/jobs/edit/${job.id}`" class=""><i class="fas fa-edit"></i></Link>-->
+<!--                            <Link :href="`/jobs/delete/${job.id}`" class=""><i class="far fa-trash-alt"></i></Link>-->
                         </template>
                     </td>
                 </tr>

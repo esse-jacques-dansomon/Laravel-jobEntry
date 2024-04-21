@@ -56,7 +56,6 @@ const props = defineProps({
                     <td>
                         <img :src="`/storage/${applicant.photo}`" :alt="applicant.user.name">
                     </td>
-                    <td>{{}}</td>
                 </tr>
 
                 </tbody>
