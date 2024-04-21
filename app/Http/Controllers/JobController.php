@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateJobRequest;
 use App\Models\Category;
 use App\Models\Job;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+
 
 class JobController extends Controller
 {
@@ -21,6 +23,33 @@ class JobController extends Controller
         $jobs = Job::with('enterprise')->orderBy('created_at', 'desc')->paginate(15);
         return inertia('jobs/JobList', compact(
              'categories', 'jobs'
+        ));
+    }
+
+
+    public function jobsSearch(Request $request): \Inertia\Response|\Inertia\ResponseFactory
+    {
+        $categories = Category::all();
+        $keyword = $request->keyword;
+        $type = $request->type;
+        $category_id = $request->category;
+        if ($type) {
+            $jobs = Job::where('type', $type);
+        } else {
+            $jobs = Job::query();
+        }
+        if ($keyword) {
+            $jobs = $jobs->where('title', 'like', '%' . $keyword . '%');
+        }
+        if ($category_id) {
+            $jobs = $jobs->where('category_id', $category_id);
+        }
+        $jobs = $jobs->orderBy('created_at', 'desc');
+        $jobs = $jobs->paginate(150);
+        $jobs->load('enterprise');
+
+        return inertia('jobs/JobList', compact(
+            'categories', 'jobs',
         ));
     }
 
@@ -80,27 +109,5 @@ class JobController extends Controller
         return redirect()->route('jobs', $job->slug);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Job $job)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateJobRequest $request, Job $job)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Job $job)
-    {
-        //
-    }
 }

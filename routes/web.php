@@ -19,6 +19,7 @@ Route::get('/home', function () {
     return redirect()->route('home');
 });
 Route::get('/jobs', 'App\Http\Controllers\JobController@index')->name('jobs');
+Route::post('/jobs', 'App\Http\Controllers\JobController@jobsSearch')->name('jobsSearch');
 Route::get('/jobs/{job}', 'App\Http\Controllers\JobController@show')->name('job');
 Route::get('/jobs?active_type={type}', 'App\Http\Controllers\JobController@index')->name('jobs-active');
 Route::get('/post-job', 'App\Http\Controllers\JobController@create')->name('post-job');
