@@ -14,9 +14,9 @@
                                 <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor
                                     at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea
                                     elitr.</p>
-                                <a class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a>
-                                <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Find A
-                                    Talent</a>
+                                <button class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</button>
+                                <button href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Find A
+                                    Talent</button>
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                         <div v-for="(typeJob, index) in typesJobs" :key="typeJob.id" :id="`tab-${typeJob.id}`"
                              class="tab-pane fade show p-0" :class="{ 'active': index === 0 }">
                             <job-card v-for="job in typeJob['jobs'].data" :key="job.id" :job="job"/>
-                            <a class="btn btn-primary py-3 px-5" href="/jobs">Browse More Jobs</a>
+                            <Link class="btn btn-primary py-3 px-5" :href="route('jobs')">Browse More Jobs</Link>
                         </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@
         <div class="container">
             <h1 class="text-center mb-5">Our Clients Say!!!</h1>
             <div class="owl-carousel testimonial-carousel">
-                <TestMonialCard v-for="testimonial in testimonies" :testimonial="testimonial"/>
+                <TestMonialCard v-for="testimonial in testimonies" :key="testimonial.id" :testimonial="testimonial"/>
             </div>
         </div>
     </div>
@@ -184,7 +184,7 @@
 import CategoryCard from "../components/CategoryCard.vue";
 import JobCard from "../components/JobCard.vue";
 import TestMonialCard from "../components/TestMonialCard.vue";
-
+import { Link } from '@inertiajs/vue3'
  defineProps({
     categories: Array,
     testimonies: Array,

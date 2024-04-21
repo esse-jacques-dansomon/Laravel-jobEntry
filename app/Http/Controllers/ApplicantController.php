@@ -19,10 +19,10 @@ class ApplicantController extends Controller
     {
         $categories = Category::with('jobs')->get();
 
-        $fullTimeJobs = Job::where('type', 'full-time')->paginate(5);
-        $internshipJobs = Job::where('type', 'internship')->paginate(5);
-        $partTimeJobs = Job::where('type', 'part-time')->paginate(5);
-        $freelanceJobs = Job::where('type', 'freelance')->paginate(5);
+        $fullTimeJobs = Job::where('type', 'full-time')->with('enterprise')->paginate(15);;
+        $internshipJobs = Job::where('type', 'internship')->with('enterprise')->paginate(15);;
+        $partTimeJobs = Job::where('type', 'part-time')->with('enterprise')->paginate(15);;
+        $freelanceJobs = Job::where('type', 'freelance')->with('enterprise')->paginate(15);;
 
         $testimonies = Testimony::with('user')->get();
 

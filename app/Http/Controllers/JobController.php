@@ -16,40 +16,10 @@ class JobController extends Controller
      */
     public function index()
     {
-
-        $activeType = request('active_type', 'full-time');
-
-        $fullTimeJobs = Job::where('type', 'full-time')->paginate(15);
-        $internshipJobs = Job::where('type', 'internship')->paginate(15);
-        $partTimeJobs = Job::where('type', 'part-time')->paginate(15);
-        $freelanceJobs = Job::where('type', 'freelance')->paginate(15);
         $categories = Category::all();
         $jobs = Job::with('enterprise')->orderBy('created_at', 'desc')->paginate(15);
-        $typesJobs = [
-            [
-                'id' => 'full-time',
-                'name' => 'Full Time',
-                'jobs' => $fullTimeJobs
-            ],
-            [
-                'id' => 'internship',
-                'name' => 'Internship',
-                'jobs' => $internshipJobs
-            ],
-            [
-                'id' => 'part-time',
-                'name' => 'Part Time',
-                'jobs' => $partTimeJobs
-            ],
-            [
-                'id' => 'freelance',
-                'name' => 'Freelance',
-                'jobs' => $freelanceJobs
-            ]
-        ];
-
         return inertia('jobs/JobList', compact(
-            'typesJobs',    'activeType', 'categories', 'jobs'
+             'categories', 'jobs'
         ));
     }
 
@@ -59,11 +29,13 @@ class JobController extends Controller
     public function create()
     {
         //user can only post job if they are an enterprise
-        if (auth()->user()->isApplicant()) {
+        if (auth()->user() == null ) {
             return redirect()->route('home');
+        }elseif (auth()->user()->isApplicant()) {
+            return redirect()->route('home') ;
         }
         $categories = Category::all();
-        return view('pages.post-job', compact('categories'));
+        return inertia('jobs/PostJob', compact('categories'));
     }
 
     /**
