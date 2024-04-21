@@ -1,66 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# JobEntry
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+<p align="center"><a href="https://github.com/esse-jacques-dansomon/Laravel-jobEntry.git" target="_blank"><img src="docs/img.png" width="3584" alt="Laravel Logo"></a></p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Table of Contents
 
-## Learning Laravel
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Project Status](#project-status)
+- [Contact](#contact)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Description
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+This is a simple job entry application that allows users to create, read, update, and delete job entries.
+<p align="center"><a href="https://github.com/esse-jacques-dansomon/Laravel-jobEntry.git" target="_blank"><img src="docs/UML.png" width="3584" alt="Laravel Logo"></a></p>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+1. Clone this repository
+2. Run `composer install`
+3. Run `npm install`
+4. Create a new database and update the `.env` file with your database credentials
+5. Run `php artisan migrate`
+6. Run `php artisan db:seed`
+7. Run `php artisan key:generate`
+8. Run `php artisan storage:link`
+9. Run `npm run dev`
+10. Run `php artisan serve`
+11. Visit `localhost:8000`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Usage
 
-### Premium Partners
+### Enterprise User
+1. Register a new user as an enterprise on `localhost:8000/register`
+2. Login with your new user credentials on `localhost:8000/login`
+3. Create a new job entry on `localhost:8000/job/create`
+4. View your job entry on `localhost:8000/job`
+5. Edit your job entry on `localhost:8000/job/edit`
+6. View all your job entries on `localhost:8000/dashboard`
+7. Logout
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Job Seeker User
+1. Register a new user as a job seeker on `localhost:8000/register`
+2. Login with your new user credentials on `localhost:8000/login`
+3. View all job entries on `localhost:8000/jobs`
+4. View a specific job entry on `localhost:8000/job/{id}`
+5. Apply to a job entry on `localhost:8000/job/{id}/apply`
+6. View all job entries you have applied to on `localhost:8000/dashboard`
+7. Logout
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Project Status
+
+Project is: _in progress_ until further notice. The following features are planned:
+
+- [ ] Add a job search feature
+- [ ] Add a job application feature
+- [ ] Add a job interview feature
+- [ ] Add a job offer feature
+- [ ] Add a job rejection feature
+- [ ] Add a job acceptance feature
+- [ ] Add a job completion feature
+- [ ] Add a job archive feature
+- [ ] Add a job search feature
+
+## Contact
+
+[GitHub](https://github.com/esse-jacques-dansomon/)
+
+[LinkedIn](https://www.linkedin.com/in/esse-jacques-dansomon/)
