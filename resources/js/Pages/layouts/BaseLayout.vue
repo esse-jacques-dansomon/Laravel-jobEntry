@@ -1,4 +1,3 @@
-
 <template>
     <html lang="">
     <head>
@@ -16,8 +15,9 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
-              rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+            rel="stylesheet">
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -25,8 +25,17 @@
     </head>
     <body>
     <div class="container-xxl bg-white p-0">
+        <div class="flash-message-container">
+            <flash-message
+                v-if="messages.length > 0"
+                v-for="(message, index) in messages"
+                :key="index"
+                :message="message.message"
+                :type="message.type"
+            />
+        </div>
         <Navbar/>
-            <slot></slot>
+        <slot></slot>
         <Footer/>
     </div>
 
@@ -37,23 +46,30 @@
 
 <script setup>
 import {Link, usePage} from '@inertiajs/vue3';
-import {computed} from "vue";
 import Navbar from "./Navbar.vue";
 import Footer from "./Footer.vue";
+import {ref, watch} from "vue";
 const page = usePage();
-// let message = computed(() => page.props.flash.success);
-// setTimeout(() => {
-//     if (message.value) {
-//         page.props.flash.success= null;
-//         message = null;
-//         console.log(message);
-//     }
-// }, 1000);
+const messages = ref([]);
+
+watch(() => usePage().props.flash.message, (next) => {
+    messages.value.push(next);
+    console.log(messages.value);
+});
+
 </script>
 
 <style>
 /* Add your global styles here */
-
+.flash-message-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 
 </style>
 

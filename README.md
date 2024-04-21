@@ -25,11 +25,14 @@ This is a simple job entry application that allows users to create, read, update
 1. Clone this repository
 2. Run `composer install`
 3. Run `npm install`
-4. Run `php artisan migrate`
-5. Run `npm run dev`
-6. Run `php artisan serve`
-7. Navigate to `localhost:8000` in your browser
-8. Enjoy!
+4. Create a new database and update the `.env` file with your database credentials
+5. Run `php artisan migrate`
+6. Run `php artisan db:seed`
+7. Run `php artisan key:generate`
+8. Run `php artisan storage:link`
+9. Run `npm run dev`
+10. Run `php artisan serve`
+11. Visit `localhost:8000`
 
 ## Usage
 

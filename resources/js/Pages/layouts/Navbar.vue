@@ -17,9 +17,9 @@ import { Link } from '@inertiajs/vue3'
                 <template v-if="!$page.props.auth.user">
                     <Link :href="route('login')" class="nav-item nav-link">Login</Link>
                     <div class="nav-item dropdown">
-                        <button class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <Link class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <span class="ms-1 d-none d-lg-inline-block">Register</span>
-                        </button>
+                        </Link>
                         <div class="dropdown-menu dropdown-menu-end">
                             <Link :href=" route('register')" class="dropdown-item">Applicant</Link>
                             <Link :href="route('enterprise')" class="dropdown-item">Enterprise</Link>
@@ -28,9 +28,9 @@ import { Link } from '@inertiajs/vue3'
                 </template>
                 <template v-else>
                     <div class="nav-item dropdown">
-                        <button class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <Link class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <span class="ms-1 d-none d-lg-inline-block">{{ $page.props.auth.user.name }}</span>
-                        </button>
+                        </Link>
                         <div class="dropdown-menu dropdown-menu-end">
                             <Link :href="route('dashboard')" class="dropdown-item">Dashboard</Link>
                             <Link :href="route('logout')" class="dropdown-item" @click.prevent="logout">Logout</Link>

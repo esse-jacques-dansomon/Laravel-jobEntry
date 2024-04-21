@@ -50,7 +50,7 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    public function login(Request $request)
+    public function login(Request $request): \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\RedirectResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -59,7 +59,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            $defaultRoute = route('dashboard');
+            $defaultRoute = route('home');
             $intended_route = redirect()->intended($defaultRoute)->getTargetUrl();
             return Inertia::location($intended_route);
         }

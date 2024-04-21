@@ -54,7 +54,12 @@ class ApplicantController extends Controller
             'categories',
             'typesJobs',
             'testimonies'
-        ));
+        ))->with([
+            'message' => [
+                'type' => 'success',
+                'message' => 'your message here'
+            ]
+        ]);
     }
 
     /**

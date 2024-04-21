@@ -1,6 +1,7 @@
 <script setup>
 import Breadcrumb from "../components/Breadcrumb.vue";
-
+import { defineProps } from 'vue'
+import {Link} from "@inertiajs/vue3";
 defineProps({
     job: Object
 })
@@ -38,12 +39,29 @@ defineProps({
                     </div>
 
 
-                    <div class="">
-                        <h4 class="mb-4">Apply For The Job</h4>
+                    <div class="" v-if="$page.props.auth.user">
+                        <div class="" v-if="$page.props.auth.user.is_applicant">
+                            <h4 class="mb-4">Apply For The Job</h4>
+                            <div class="col-12">
+                                <Link  :href="route('apply', job.id)" class="btn btn-primary w-100" type="submit">Apply Now</Link>
+                            </div>
+                        </div>
+
+                        <div class="" v-else>
+                            <h4 class="mb-4">Only applicant can post</h4>
+                            <div class="col-12">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="" v-else>
+                        <h4 class="mb-4">Login to apply for the job</h4>
                         <div class="col-12">
-                            <Link href="{{ route('apply', job.id) }}" class="btn btn-primary w-100" type="submit">Apply Now</Link>
+                            <Link  :href="route('login')" class="btn btn-primary w-100" type="submit">Login</Link>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="col-lg-4">

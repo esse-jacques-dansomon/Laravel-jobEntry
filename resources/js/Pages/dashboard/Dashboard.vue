@@ -9,65 +9,17 @@ const props = defineProps({
 </script>
 
 <template>
-    <Breadcrumb title="Dashboard" :items="[
-        {name: 'Home', href: '/'},
-        {name: 'Dashboard', href: '/dashboard'}
-    ]"/>
-    <!--    <div class="container">-->
-    <!--        <div class="row">-->
-    <!--            <div class="col-12">-->
-    <!--                <h2 class="text-center my-5">Jobs</h2>-->
-    <!--            </div>-->
-    <!--        </div>-->
+    <Breadcrumb title="Dashboard"/>
 
-    <!--        <div class="row">-->
-    <!--            <div class="col-12">-->
-    <!--                <table class="table table-bordered">-->
-    <!--                    <thead>-->
-    <!--                    <tr>-->
-    <!--                        <th scope="col">No</th>-->
-    <!--                        <th scope="col">Title</th>-->
-    <!--                        <th scope="col">Type</th>-->
-    <!--                        <th scope="col">Category</th>-->
-    <!--                        <th scope="col">Location</th>-->
-    <!--                        <th scope="col">Salary</th>-->
-    <!--                        <th scope="col">Actions</th>-->
-    <!--                    </tr>-->
-    <!--                    </thead>-->
-    <!--                    <tbody>-->
-    <!--                    <tr v-for="(job, index) in jobs">-->
-    <!--                        <th scope="row">{{index + 1}}</th>-->
-    <!--                        <td>{{job.title}}</td>-->
-    <!--                        <td>{{job.type}}</td>-->
-    <!--                        <td>{{job.category.name}}</td>-->
-    <!--                        <td>{{job.location}}</td>-->
-    <!--                        <td>{{job.salary}}</td>-->
-    <!--                        <td>-->
-<!--                                <Link :href="`/jobs/${job.slug}`" type="button" class="btn btn-primary mx-1"><i class="far fa-eye"></i></Link>-->
-<!--                                <Link :href="`/jobs/seekers/${job.id}`" type="button" class="btn btn-warning mx-1"><i class="fa fa-users"></i></Link>-->
-<!--                                <Link :href="`/jobs/edit/${job.id}`" type="button" class="btn btn-success mx-1"><i class="fas fa-edit"></i></Link>-->
-<!--                                <Link :href="`/jobs/delete/${job.id}`" type="button" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></Link>-->
-    <!--                        </td>-->
-    <!--                    </tr>-->
-
-    <!--                    </tbody>-->
-    <!--                </table>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
 
     <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Manage <b>Employee</b></h2>
+                        <h2>Jobs <b></b></h2>
                     </div>
                     <div class="col-sm-6">
-<!--                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i-->
-<!--                            class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>-->
-<!--                        <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i-->
-<!--                            class="material-icons">&#xE15C;</i> <span>Delete</span></a>-->
                     </div>
                 </div>
             </div>
@@ -96,16 +48,18 @@ const props = defineProps({
                           <label for="checkbox1"></label>
                         </span>
                     </td>
-                    <td>{{job.title}}</td>
-                    <td>{{job.type}}</td>
-                    <td>{{job.category.name}}</td>
-                    <td>{{job.location}}</td>
-                    <td>{{job.salary}}</td>
+                    <td>{{ job.title }}</td>
+                    <td>{{ job.type }}</td>
+                    <td>{{ job.category.name }}</td>
+                    <td>{{ job.location }}</td>
+                    <td>{{ job.salary }}</td>
                     <td class="d-flex">
-                        <Link :href="`/jobs/${job.slug}`"  class=""><i class="far fa-eye"></i></Link>
-                        <Link :href="`/dashboard/${job.id}/applicants`"  class=""><i class="fa fa-users"></i></Link>
-                        <Link :href="`/jobs/edit/${job.id}`"  class=" "><i class="fas fa-edit"></i></Link>
-                        <Link :href="`/jobs/delete/${job.id}`"  class=""><i class="far fa-trash-alt"></i></Link>
+                        <Link :href="`/jobs/${job.slug}`" class=""><i class="far fa-eye"></i></Link>
+                        <template v-if="$page.props.auth.user.is_enterprise">
+                            <Link :href="`/dashboard/${job.id}/applicants`" class=""><i class="fa fa-users"></i></Link>
+                            <Link :href="`/jobs/edit/${job.id}`" class=" "><i class="fas fa-edit"></i></Link>
+                            <Link :href="`/jobs/delete/${job.id}`" class=""><i class="far fa-trash-alt"></i></Link>
+                        </template>
                     </td>
                 </tr>
 

@@ -2,6 +2,7 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import BaseLayout from "./Pages/layouts/BaseLayout.vue";
 import { ZiggyVue} from 'ziggy';
+import FlashMessage from "./Pages/components/FlashMessage.vue";
 // import 'tailwindcss/tailwind.css';
 
 
@@ -19,6 +20,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .component('flash-message', FlashMessage)
             .mount(el)
     },
 })
