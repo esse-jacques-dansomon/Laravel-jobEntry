@@ -14,12 +14,12 @@ import { Link } from '@inertiajs/vue3'
                 <Link :href="route('jobs')" class="nav-item nav-link" :class="{ active: route().current('jobs') }">Jobs</Link>
                 <Link :href="route('categories')" class="nav-item nav-link" :class="{ active: route().current('categories') }">Job Category</Link>
                 <Link :href="route('contact')" class="nav-item nav-link" :class="{ active: route().current('contact') }">Contact</Link>
-                <template v-if="!$page.props.user">
-                    <a href="/login" class="nav-item nav-link">Login</a>
+                <template v-if="!$page.props.auth.user">
+                    <Link :href="route('login')" class="nav-item nav-link">Login</Link>
                     <div class="nav-item dropdown">
-                        <Link href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <button class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <span class="ms-1 d-none d-lg-inline-block">Register</span>
-                        </Link>
+                        </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <Link :href=" route('register')" class="dropdown-item">Applicant</Link>
                             <Link :href="route('enterprise')" class="dropdown-item">Enterprise</Link>
@@ -28,12 +28,12 @@ import { Link } from '@inertiajs/vue3'
                 </template>
                 <template v-else>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <span class="ms-1 d-none d-lg-inline-block">{{ $page.props.user.name }}</span>
-                        </a>
+                        <button class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <span class="ms-1 d-none d-lg-inline-block">{{ $page.props.auth.user.name }}</span>
+                        </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <Link :href="route('dashboard')" class="dropdown-item">Dashboard</Link>
-                            <a href="/logout" class="dropdown-item" @click.prevent="logout">Logout</a>
+                            <Link :href="route('logout')" class="dropdown-item" @click.prevent="logout">Logout</Link>
                         </div>
                     </div>
                 </template>

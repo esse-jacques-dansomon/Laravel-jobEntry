@@ -40,6 +40,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('slug', $category)->firstOrFail();
         $jobs = $category->jobs()->paginate(15);
+        $jobs->load('enterprise');
         return inertia('category/JobCategoryDetails', compact('category', 'jobs'));
     }
 

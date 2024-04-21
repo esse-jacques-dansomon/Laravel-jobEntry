@@ -6,6 +6,7 @@ use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 use App\Models\Category;
 use App\Models\Job;
+use Inertia\Inertia;
 
 class JobController extends Controller
 {
@@ -64,7 +65,7 @@ class JobController extends Controller
     {
         $job = Job::where('slug', $job)->firstOrFail();
         $job->load('enterprise');
-        return inertia('jobs/JobDetails', compact('job'));
+        return Inertia::render('jobs/JobDetails', compact('job'));
     }
 
 
