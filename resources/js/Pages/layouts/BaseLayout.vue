@@ -24,7 +24,10 @@
 
     </head>
     <body>
+
     <div class="container-xxl bg-white p-0">
+
+        <Navbar/>
         <div class="flash-message-container">
             <flash-message
                 v-if="messages.length > 0"
@@ -34,7 +37,6 @@
                 :type="message.type"
             />
         </div>
-        <Navbar/>
         <slot></slot>
         <Footer/>
     </div>
@@ -45,16 +47,21 @@
 </template>
 
 <script setup>
-import {Link, usePage} from '@inertiajs/vue3';
+import  {Link, usePage} from '@inertiajs/vue3';
 import Navbar from "./Navbar.vue";
 import Footer from "./Footer.vue";
 import {ref, watch} from "vue";
+// import {ref, watch} from "vue";
 const page = usePage();
-const messages = ref([]);
+const messages = ref([
 
-watch(() => usePage().props.flash.message, (next) => {
+]);
+
+watch(() => usePage().props.flash, (next) => {
     messages.value.push(next);
-    console.log(messages.value);
+    setTimeout(() => {
+        messages.value.shift();
+    }, 7000);
 });
 
 </script>
@@ -69,6 +76,7 @@ watch(() => usePage().props.flash.message, (next) => {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    z-index: 9999;
 }
 
 </style>

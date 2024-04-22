@@ -50,7 +50,12 @@ class JobController extends Controller
 
         return inertia('jobs/JobList', compact(
             'categories', 'jobs',
-        ));
+        ))->with([
+            'message' => [
+                'type' => 'success',
+                'message' => 'your message here'
+            ]
+        ]);
     }
 
     /**
@@ -60,9 +65,21 @@ class JobController extends Controller
     {
         //user can only post job if they are an enterprise
         if (auth()->user() == null ) {
-            return redirect()->route('home');
+            return redirect()->route('home')->
+            with([
+                'flash' => [
+                    'type' => 'error',
+                    'message' => 'You need to login to post a job.'
+                ]
+            ]);;
         }elseif (auth()->user()->isApplicant()) {
-            return redirect()->route('home') ;
+            return redirect()->route('home')
+                ->with([
+                    'flash' => [
+                        'type' => 'error',
+                        'message' => 'You need to be an enterprise to post a job.'
+                    ]
+                ]);
         }
         $categories = Category::all();
         return inertia('jobs/PostJob', compact('categories'));
@@ -74,7 +91,12 @@ class JobController extends Controller
     public function store(StoreJobRequest $request): \Illuminate\Http\RedirectResponse
     {
         if (auth()->user()->isApplicant()) {
-            return redirect()->route('home');
+            return redirect()->route('home') ->with([
+                'flash' => [
+                    'type' => 'error',
+                    'message' => 'You need to be an enterprise to post a job.'
+                ]
+            ]);
         }
         $enterprise_id = auth()->user()->enterprise->id;
         $slug = $request->title . '-' . $enterprise_id;
@@ -84,7 +106,14 @@ class JobController extends Controller
                 ['slug' => $slug]
             )
         );
-        return redirect()->route('job', $job->slug);
+        return redirect()->route('job', $job->slug)
+            ->
+            with([
+                'flash' => [
+                    'type' => 'success',
+                    'message' => 'Your job has been created successfully'
+                ]
+            ]);
     }
 
     /**
@@ -105,8 +134,12 @@ class JobController extends Controller
             return redirect()->route('home');
         }
         $applicant = auth()->user()->applicant;
+        //check if the applicant has already applied for the job
+        if ($job->applicants->contains($applicant->id)) {
+            return redirect()->route('jobs', $job->slug);
+        }
         $job->applicants()->attach($applicant->id);
-        return redirect()->route('jobs', $job->slug);
+        return redirect()->route('jobs', $job->slug)->with('message', 'You have successfully applied for the job');
     }
 
 

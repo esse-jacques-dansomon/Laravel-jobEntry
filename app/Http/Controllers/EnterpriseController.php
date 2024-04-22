@@ -50,7 +50,13 @@ class EnterpriseController extends Controller
 //            'phone' => $request->phone
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('login')->
+        with([
+            'flash' => [
+                'type' => 'success',
+                'message' => 'Your account has been created successfully. Please login to continue.'
+            ]
+        ]);
     }
 
     /**
