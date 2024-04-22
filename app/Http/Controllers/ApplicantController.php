@@ -9,13 +9,14 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\Testimony;
 use App\Models\User;
+use Inertia\Inertia;
 
 class ApplicantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Inertia\Response
     {
         $categories = Category::with('jobs')->get();
 
@@ -50,14 +51,14 @@ class ApplicantController extends Controller
             ]
         ];
 
-        return inertia('other/Home', compact(
+        return Inertia::render('other/Home', compact(
             'categories',
             'typesJobs',
             'testimonies'
         ))->with([
-            'message' => [
+            'flash' => [
                 'type' => 'success',
-                'message' => 'your message here'
+                'message' => 'Welcome to our platform'
             ]
         ]);
     }
@@ -65,15 +66,15 @@ class ApplicantController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): \Inertia\Response|\Inertia\ResponseFactory
     {
-        return inertia('auth/RegisterApplicant');
+        return Inertia::render('auth/RegisterApplicant');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreApplicantRequest $request)
+    public function store(StoreApplicantRequest $request): \Illuminate\Http\RedirectResponse
     {
         $user = User::create([
             'name' => $request->name,
@@ -90,38 +91,14 @@ class ApplicantController extends Controller
             'coverLetter' => $request->coverLetter
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('login', compact('user'))
+            ->with([
+               'flash' => [
+                   'type' => 'success',
+                   'message' => 'Your account has been created successfully. Please login to continue.'
+               ]
+           ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Applicant $applicant)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Applicant $applicant)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateApplicantRequest $request, Applicant $applicant)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Applicant $applicant)
-    {
-        //
-    }
 }

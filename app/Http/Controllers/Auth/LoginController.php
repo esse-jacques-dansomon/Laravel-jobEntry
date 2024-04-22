@@ -43,11 +43,17 @@ class LoginController extends Controller
         return Inertia::render('auth/Login');
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/')->with([
+            'flash' => [
+                'message' => 'Vous êtes déconnecté',
+                'type' => 'success'
+            ]
+        ]);
     }
 
     public function login(Request $request): \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\RedirectResponse
@@ -59,7 +65,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            $defaultRoute = route('home');
+            $defaultRoute = route('dashboard');
             $intended_route = redirect()->intended($defaultRoute)->getTargetUrl();
             return Inertia::location($intended_route);
         }
