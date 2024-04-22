@@ -28,7 +28,7 @@
     <div class="container-xxl bg-white p-0">
 
         <Navbar/>
-        <div class="flash-message-container">
+        <div   v-if="messages.length > 0" class="flash-message-container">
             <flash-message
                 v-if="messages.length > 0"
                 v-for="(message, index) in messages"
@@ -51,13 +51,11 @@ import  {Link, usePage} from '@inertiajs/vue3';
 import Navbar from "./Navbar.vue";
 import Footer from "./Footer.vue";
 import {ref, watch} from "vue";
-// import {ref, watch} from "vue";
 const page = usePage();
-const messages = ref([
-
-]);
+const messages = ref([]);
 
 watch(() => usePage().props.flash, (next) => {
+    if (!next || !next.message ) return;
     messages.value.push(next);
     setTimeout(() => {
         messages.value.shift();

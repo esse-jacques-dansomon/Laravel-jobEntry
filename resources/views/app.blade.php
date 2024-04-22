@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Job Entry</title>
+    <title>JobEntry</title>
+    <link href="img/favicon.ico" rel="icon">
+
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +35,7 @@
 ])
     @inertiaHead
 </head>
-<body  class="">
+<body class="">
 @inertia
 </body>
 <!-- JavaScript Libraries -->

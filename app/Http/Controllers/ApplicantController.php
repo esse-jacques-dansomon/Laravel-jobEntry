@@ -55,7 +55,12 @@ class ApplicantController extends Controller
             'categories',
             'typesJobs',
             'testimonies'
-        ));
+        ))->with([
+            'flash' => [
+                'type' => 'success',
+                'message' => 'Welcome to our platform'
+            ]
+        ]);
     }
 
     /**

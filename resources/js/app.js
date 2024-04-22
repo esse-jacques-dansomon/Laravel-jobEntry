@@ -13,7 +13,9 @@ createInertiaApp({
         if (!page) {
             throw new Error(`Page ${name} not found. Searched in: ${Object.keys(pages)}`)
         }
-        page.default.layout = page.default.layout || BaseLayout
+        if (page.default.layout === undefined) {
+            page.default.layout = BaseLayout
+        }
         return page
     },
     setup({ el, App, props, plugin }) {

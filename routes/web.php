@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\ApplicantController@index')->name('home');
-Route::get('/home', function () {
-    return redirect()->route('home');
-});
+//Route::get('/home', function () {
+//    return redirect()->route('home');
+//});
 Route::get('/jobs', 'App\Http\Controllers\JobController@index')->name('jobs');
 Route::post('/jobs', 'App\Http\Controllers\JobController@jobsSearch')->name('jobsSearch');
 Route::get('/jobs/{job}', 'App\Http\Controllers\JobController@show')->name('job');
@@ -56,4 +56,5 @@ Route::put('/dashboard/{job}', [App\Http\Controllers\HomeController::class, 'upd
 Route::delete('/dashboard/{job}', [App\Http\Controllers\HomeController::class, 'destroy'])->name('dashboard-job-delete');
 Route::get('/dashboard/{job}/applicants', [App\Http\Controllers\HomeController::class, 'applicants'])->name('dashboard-job-applicants');
 Route::get('/dashboard/{job}/applicants/{applicant}', [App\Http\Controllers\HomeController::class, 'applicant'])->name('dashboard-job-applicant');
+
 
